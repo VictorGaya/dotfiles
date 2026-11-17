@@ -50,6 +50,9 @@ return {
             end,
         })
 
+        -- NOTE: Filetype detection
+        vim.filetype.add({ extension = { mojo = "mojo", fire = "mojo" } })
+
         -- NOTE: Diagnostic Setup
         -- Define sign icons for each severity
         local signs = {
@@ -259,6 +262,13 @@ return {
             single_file_support = true,
         })
 
+        -- mojo
+        vim.lsp.config("mojo_lsp_server", {
+            cmd = { "/usr/local/bin/mojo-lsp-server" },
+            filetypes = { "mojo" },
+            single_file_support = true,
+        })
+
         -- Instead of using mason enable all configured LSP via `automatic_enable=true`
         -- Prefer more control by enable manual server call below via vim.lsp.enable("")
         -- mason config: lua/sethy/plugins/lsp/mason.lua:22
@@ -274,6 +284,7 @@ return {
             "tailwindcss",
             "marksman",
             "ols",
+            "mojo_lsp_server",
         })
     end,
 }

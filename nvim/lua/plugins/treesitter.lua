@@ -11,8 +11,21 @@ return {
             local ensure_installed = {
                 "json", "javascript", "typescript", "tsx", "go", "yaml", "html", "css", "python",
                 "http", "prisma", "svelte", "graphql", "bash", "vim", "dockerfile",
-                "gitignore", "query", "vimdoc", "c", "java", "rust", "ron", "odin",
+                "gitignore", "query", "vimdoc", "c", "java", "rust", "ron", "odin", "mojo",
             }
+
+            -- Register custom Mojo parser (not in nvim-treesitter's built-in list)
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "TSUpdate",
+                callback = function()
+                    require("nvim-treesitter.parsers").mojo = {
+                        install_info = {
+                            url = "https://github.com/dmitry-salin/tree-sitter-mojo.git",
+                            queries = "nvim-queries/mojo",
+                        },
+                    }
+                end,
+            })
 
             treesitter.install(ensure_installed)
 

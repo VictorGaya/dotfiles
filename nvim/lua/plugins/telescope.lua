@@ -39,6 +39,7 @@ return {
         })
 
         -- Keymaps
+        vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find Files' })
         vim.keymap.set("n", "<leader>pr", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
         vim.keymap.set("n", "<leader>pWs", function()
             local word = vim.fn.expand("<cWORD>")
